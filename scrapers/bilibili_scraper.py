@@ -15,9 +15,10 @@ html_data = response.text
 #windows.__playinfo__=(.*?)</script>
 play_info = re.findall(r'window.__playinfo__=(.*?)</script>', html_data,re.S)[0]
 json_data = json.loads(play_info)#将字符串转换为字典
-video=json_data['data']['dash']['video'][0]['baseUrl']
+
+video=json_data['data']['dash']['video'][3]['baseUrl']
 video_data=requests.get(video,headers=headers).content
-with open('video.mp4', 'wb') as f:
+with open('video3.mp4', 'wb') as f:
     f.write(video_data)
 audio=json_data['data']['dash']['audio'][0]['baseUrl']
 audio_data=requests.get(audio,headers=headers).content
